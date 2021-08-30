@@ -7,7 +7,7 @@ const PlaceList = ({ places }) => {
 
   // We create a list of rendered IssueItems by using the map method on `issues`
   const renderedList = places.map((place) => {
-    return <Place key={place} place={place} />;
+    return <Place key={place.cityName} place={place} />;
   });
 
   // Here we return our array of IssueItems wrapped inside a parent div

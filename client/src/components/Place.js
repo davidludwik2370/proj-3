@@ -7,7 +7,9 @@ import React from 'react';
 
 const Place = ({ place }) => {
 
-  
+  const handleSave = () => {
+    
+  }
 
   return (
     <div className="card mb-3" style={{ border: 'none' }}>
@@ -15,22 +17,12 @@ const Place = ({ place }) => {
         className="card-header bg-info text-light p-2 m-0"
         style={{ color: 'white', borderRadius: '5px' }}
       >
-        <p>
-          {place.cityName}
-        </p>
-        <p>Region: 
-          {place.region}
-        </p>
-        <p>Population: 
-          {place.population}
-        </p>
-        <p>Longitude: 
-          {place.longitude}
-        </p>
-        <p>Latitude: 
-          {place.latitude}
-        </p>
-
+        <h3>{place.cityName}</h3>
+        <pre><span>Region: </span>{place.region}</pre>
+        <pre><span>Population: </span>{place.population}</pre>
+        <pre><span>Longitude: </span>{place.longitude}</pre>
+        <pre><span>Latitude: </span>{place.latitude}</pre>
+        <button onClick={handleSave}>Save</button>
         
       </div>
     </div>
