@@ -3,20 +3,14 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <nav className="bg-info text-dark mb-4 py-3 display-flex align-center">
-      {/* <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <h1 className="m-0" style={{ fontSize: '3rem' }}>
-          Tech Friends
-        </h1>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Meet your new programming pals.
-        </p>
-      </div> */}
-      <Link to="/">Search</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">Signup</Link>
-      <Link to="/saved">Saved</Link>
-      {/* <a href='/'>home</a> */}
+    <nav className="bg-info text-dark mb-4 py-3 display-flex " style={{display:'flex', justifyContent: "space-around"}}>
+      
+      <div><Link to="/">Search</Link></div>
+      <div><Link to="/saved">Saved</Link></div>
+      <div><Link to="/signup">Signup</Link></div>
+      <div><Link to="/login">Login</Link></div>
+      
+
     </nav>
   );
 };
