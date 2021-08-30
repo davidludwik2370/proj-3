@@ -23,3 +23,6 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   }
 }
 `;
+
+export const SAVE_LOCATION = gql`
+mutation saveLocation() 
