@@ -7,7 +7,7 @@ function Search() {
   // We declare a state variable that is an array called `issues` and a function to update it.
   const [places, setPlaces] = useState([]);
   const [formState, setFormState] = useState({
-    numCities: 0,
+    numCities: 3,
     sort: '-population',
     countries: '',
     offset: 0,
@@ -41,6 +41,7 @@ function Search() {
           population: cityList[i].population,
           longitude: cityList[i].longitude,
           latitude: cityList[i].latitude,
+          cityId: cityList[i].id,
         });
       }
 
@@ -49,7 +50,6 @@ function Search() {
       console.error(err);
     });
   };
-
   const handleChange = (event) => {
     const { value, name } = event.target;
     console.log(value);
@@ -88,18 +88,22 @@ function Search() {
       })
       .then(res => {
         let newOffset = res.metadata.totalCount;
+        let medOffset = Math.round(newOffset*0.6666);
+        let lowOffset = Math.round(newOffset*0.3333);
         console.log(newOffset);
         if(value==='low'){
-          newOffset = Math.round(newOffset*0.6666);
-          return newOffset;
+          // Math.random() * (max - min) + min;
+          //Math.random() * medOffset;
+          return Math.round(Math.random() * (lowOffset -1 - medOffset) + medOffset);
+          // return newOffset;
         }
         if(value === 'med'){
-          newOffset = Math.round(newOffset*0.3333);
-          return newOffset;
+          // newOffset = Math.round(newOffset*0.3333);
+          return Math.round(Math.random() * (lowOffset - medOffset) + medOffset);
         }
         if(value === 'high'){
-          newOffset = 0;
-          return newOffset;
+          // newOffset = 0;
+          return Math.round(Math.random() * (medOffset-1));
         }
         // console.log(newOffset);
         
@@ -125,7 +129,59 @@ function Search() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    getPlaces();
+    document.querySelector('.header').setAttribute("style", "display: block");
+    if(formState.offset === 0){
+      let offset = document.querySelector('#offset').value;
+      await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=0`, {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+          "x-rapidapi-key": "9610a05b5amshd976184d69c9411p1b38bdjsn299a5e3639b6"
+        }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(res => {
+        let newOffset = res.metadata.totalCount;
+        let medOffset = Math.round(newOffset*0.6666);
+        let lowOffset = Math.round(newOffset*0.3333);
+        console.log(newOffset);
+        if(offset==='low'){
+          // Math.random() * (max - min) + min;
+          //Math.random() * medOffset;
+          return Math.round(Math.random() * (lowOffset -1 - medOffset) + medOffset);
+          // return newOffset;
+        }
+        if(offset === 'med'){
+          // newOffset = Math.round(newOffset*0.3333);
+          return Math.round(Math.random() * (lowOffset - medOffset) + medOffset);
+        }
+        if(offset === 'high'){
+          // newOffset = 0;
+          return Math.round(Math.random() * (medOffset-1));
+        }
+        // console.log(newOffset);
+        
+        // console.log(formState.offset);
+      }).then(res => {
+        console.log('res',res);
+        setFormState({
+          ...formState,
+          offset: res,
+        });
+        console.log('offsett ',formState.offset)
+        getPlaces();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
+    else{
+      getPlaces();
+    }
+    // setTimeout(() => getPlaces(), 2000);
+    // getPlaces();
   }
 
   return (
@@ -169,7 +225,7 @@ function Search() {
 
 
         <div className="container">
-        <h2 className="header">Possible Destinations</h2>
+        <h1 className="header" style={{display:"none"}}>Possible Destinations</h1>
         <div className="ui grid">
             <div className="row">
             <div className="col-11">
