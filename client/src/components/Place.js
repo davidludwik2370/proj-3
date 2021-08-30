@@ -16,8 +16,21 @@ const Place = ({ place }) => {
         style={{ color: 'white', borderRadius: '5px' }}
       >
         <p>
-          {place}
+          {place.cityName}
         </p>
+        <p>Region: 
+          {place.region}
+        </p>
+        <p>Population: 
+          {place.population}
+        </p>
+        <p>Longitude: 
+          {place.longitude}
+        </p>
+        <p>Latitude: 
+          {place.latitude}
+        </p>
+
         
       </div>
     </div>

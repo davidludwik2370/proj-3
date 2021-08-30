@@ -35,7 +35,13 @@ function Search() {
           setPlaces(cities);
           return;
         }
-        cities.push(cityList[i].city);
+        cities.push({
+          cityName: cityList[i].city,
+          region: cityList[i].region,
+          population: cityList[i].population,
+          longitude: cityList[i].longitude,
+          latitude: cityList[i].latitude,
+        });
       }
 
     })
@@ -45,8 +51,7 @@ function Search() {
   };
 
   const handleChange = (event) => {
-    const { value } = event.target;
-    const { name } = event.target;
+    const { value, name } = event.target;
     console.log(value);
     if(name==='numCities'){
       setFormState({
@@ -164,11 +169,7 @@ function Search() {
 
 
         <div className="container">
-        <h2 className="header">GitHub issues for 'facebook/react'</h2>
-        <span className="text-primary">
-            Stored in state variable <code>issues</code>
-        </span>
-        <hr></hr>
+        <h2 className="header">Possible Destinations</h2>
         <div className="ui grid">
             <div className="row">
             <div className="col-11">
