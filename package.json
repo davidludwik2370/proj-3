@@ -25,15 +25,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
     "web-vitals": "^0.2.4",
-    "graphql": "^15.4.0"
-=======
+    "graphql": "^15.4.0",
     "web-vitals": "^0.2.4"
-<<<<<<< HEAD
-=======
->>>>>>> 8ff80648958ee5a977b450f5686583f0e8dba2eb
   },
   "scripts": {
     "start": "node server/server.js",
@@ -59,6 +54,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
->>>>>>> d2b64e89d4c413b54b809dcc42c99c200f6bb500
   }
 }
