@@ -7,8 +7,6 @@ import {
 } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import PlaceList from './components/PlaceList';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -103,8 +101,6 @@ function App() {
         <div className="row">
           <div className="col-11">
             <PlaceList places={places} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path ="/login" component ={Login} />
           </div>
         </div>
       </div>
