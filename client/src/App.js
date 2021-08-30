@@ -1,6 +1,28 @@
 // We import useState and useEffect in our component
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import PlaceList from './components/PlaceList';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 function App() {
   // We declare a state variable that is an array called `issues` and a function to update it.
@@ -81,6 +103,8 @@ function App() {
         <div className="row">
           <div className="col-11">
             <PlaceList places={places} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path ="/login" component ={Login} />
           </div>
         </div>
       </div>

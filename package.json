@@ -1,7 +1,23 @@
 {
   "name": "00-practice-app",
   "version": "0.1.0",
-  "private": true,
+  "description": "",
+  "main": "server/server.js",
+
+  "scripts": {
+    "start": "cd client react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
+
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -10,6 +26,8 @@
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
+<<<<<<< HEAD
+=======
   },
   "scripts": {
     "start": "node server/server.js",
@@ -35,5 +53,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+>>>>>>> d2b64e89d4c413b54b809dcc42c99c200f6bb500
   }
 }
