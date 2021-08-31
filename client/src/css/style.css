@@ -2,10 +2,12 @@
     display:flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(27, 183, 194);
+    /* background-color: rgb(92, 188, 156); */
+    background-color: lightblue;
     width: 30%;
     margin-left: 35vw;
     border-radius: 5px;
+    padding: 5px;
 }
 
 
