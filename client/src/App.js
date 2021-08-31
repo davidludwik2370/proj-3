@@ -38,7 +38,11 @@ const client = new ApolloClient({
 function App() {
 
   return (
-    <div>
+    <div 
+    // style={{ 
+    //   backgroundImage: `url("https://s29843.pcdn.co/blog/wp-content/uploads/sites/2/2017/12/Pantone-color-picker-samples-855.jpg")` 
+    // }}
+    >
       <header><h1 style={{
         backgoundColor: 'red',
         color: 'green',

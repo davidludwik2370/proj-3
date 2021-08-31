@@ -129,7 +129,11 @@ function Search() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    document.querySelector('.header').setAttribute("style", "display: block");
+    let destinations = document.querySelector('.destinations')
+    destinations.setAttribute("style", "display: block");
+    destinations.setAttribute("style", "margin-top: 25px");
+    destinations.setAttribute("style", "color: white");
+    // 
     // if(formState.offset === 0){
     //   let offset = document.querySelector('#offset').value;
     //   await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=0`, {
@@ -185,7 +189,7 @@ function Search() {
   }
 
   return (
-    <div>
+    <div style={{width:'35%', margin:'30px'}}>
         <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
@@ -204,7 +208,7 @@ function Search() {
                   onChange={handleChange}
                 />
 
-                <label for="offset">Population Level:  </label>
+                <label for="offset" style={{color:'white'}}>Population Level:  </label>
 
                 <select name="offset" id="offset" onChange={handleChange} style={{width:"85px"}}>
                   <option value="high">High</option>
@@ -225,7 +229,9 @@ function Search() {
 
 
         <div className="container">
-        <h1 className="header" style={{display:"none"}}>Possible Destinations</h1>
+        <h1 className="header" >
+          <span className="destinations" style={{display:"none", color:'white'}}>Possible Destinations</span>
+          </h1>
         <div className="ui grid">
             <div className="row">
             <div className="col-11">

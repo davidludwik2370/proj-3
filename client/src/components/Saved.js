@@ -49,7 +49,7 @@ const Saved = ({ place }) => {
   }
 
   return (
-    <div className="card mb-3" style={{ border: 'none', width:'35%', marginLeft:'300px' }}>
+    <div className="card mb-3" style={{ border: 'none', width:'35%', marginLeft:'80px', marginTop:'40px' }}>
       <div
         className="card-header bg-info text-light p-2 m-0"
         style={{ color: 'white', borderRadius: '5px' }}
