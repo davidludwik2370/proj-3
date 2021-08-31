@@ -17,15 +17,9 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
+      minlength: 5
     },
-  },
-
-  {
-    toJSON: {
-      virtuals: true,
-    },
-  }
-);
+  });
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
@@ -36,7 +30,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.methods.isCorrectPassword = async function (password) {
+userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
