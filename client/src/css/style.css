@@ -1,0 +1,19 @@
+.login-form{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: lightblue;
+    width: 30%;
+    margin-left: 40vw;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+.submit{
+    width: 50%;
+    position: relative;
+    justify-content: center;
+    margin-left: 100%;
+    background-color: blue;
+}

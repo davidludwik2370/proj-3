@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form className={'login-form'} noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert
           dismissible
           onClose={() => setShowAlert(false)}
@@ -85,7 +85,7 @@ const Login = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
+        <Button className={'submit'}
           disabled={!(userFormData.email && userFormData.password)}
           type="submit"
           variant="success"
