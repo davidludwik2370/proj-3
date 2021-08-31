@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
-import '../css/style.css';
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
+import Auth from "../utils/auth";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../utils/mutations";
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+
+const Login = () => {
+  const [login, { error, data }] = useMutation(LOGIN);
+
+  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
-  const [login, { error }] = useMutation(LOGIN_USER);
-
-  useEffect(() => {
-    if (error) {
-      setShowAlert(true);
-    } else {
-      setShowAlert(false);
-    }
-  }, [error]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -39,15 +31,17 @@ const LoginForm = () => {
         variables: { ...userFormData },
       });
 
-      console.log(data);
       Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
     }
 
     setUserFormData({
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
   };
 
@@ -66,7 +60,7 @@ const LoginForm = () => {
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="johndoe@gmail.com"
+            placeholder="Your email"
             name="email"
             onChange={handleInputChange}
             value={userFormData.email}
@@ -81,7 +75,7 @@ const LoginForm = () => {
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="yourpassword"
+            placeholder="Your password"
             name="password"
             onChange={handleInputChange}
             value={userFormData.password}
@@ -103,4 +97,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

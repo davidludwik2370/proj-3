@@ -28,11 +28,3 @@ Data pulled from geo-cities api. Server handled by node/express. Api handled by 
 
 
 
-
-
-
-
-
-
-
-
