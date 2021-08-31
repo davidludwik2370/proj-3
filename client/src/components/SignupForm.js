@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
+import '../css/style.css';
 
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({
@@ -58,7 +59,7 @@ const SignupForm = () => {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form className={'login-form'} noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert
           dismissible
           onClose={() => setShowAlert(false)}
@@ -112,7 +113,7 @@ const SignupForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
+        <Button className={'submit'}
           disabled={
             !(
               userFormData.username &&

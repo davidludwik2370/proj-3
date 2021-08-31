@@ -38,6 +38,11 @@ const client = new ApolloClient({
 function App() {
 
   return (
+    <div>
+      <header><h1 style={{
+        backgoundColor: 'red',
+        color: 'green',
+        }}>Globe Traveller</h1></header>
     <ApolloProvider client={client}>
       <Router>
         <Nav/>
@@ -57,6 +62,7 @@ function App() {
         </Switch>
       </Router>
     </ApolloProvider>
+    </div>
   );
 }
 
