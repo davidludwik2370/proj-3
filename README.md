@@ -1,23 +1,30 @@
-# Globe Traveler
+# proj-3
+Project 3 for GT Bootcamp
 
-## Website 
-----
+Created by David Ludwik, Andrew Koster, and Rahkeem Smith
 
-## Checklist 
-----
 
-## User Story
------
-As a user of loves to travel, I want to know where I can find new places to travel to based on certain criteria. 
 
-## Breakdown 
-----
-- Andrew: Signup, Login, 
-- David: 
-- Rahkeem:
 
-## Featrues
-----
-- Pages for users login as well as login to website. 
-- Page that asks users different questions about travel and then gives them results for where they want to go 
-- 
+Welcome to Globe Traveller, your personal concierge for your out of the way travel destinations.
+
+Simply enter the relevant information in the search form to find the most interesting out of the way cities in the world
+
+
+
+Check it out yourself!
+
+[deployed link](https://ancient-cove-30642.herokuapp.com)
+
+[github repo](https://worldunfurled.github.io/project-1_RDB/)
+
+Screenshots:
+![screenshot](client/images/search.png)
+
+Technical details:
+
+Data pulled from geo-cities api. Server handled by node/express. Api handled by gql. Models created by mongoose. React was used as the front end framework. Encription handled by bcrypt and jwt's. Jass and bootstrap utilized for styling.
+
+
+
+
