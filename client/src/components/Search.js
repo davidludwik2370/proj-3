@@ -14,7 +14,7 @@ function Search() {
     
   });
 
-  // Helper function that preforms an API request and sets the `issues` array to a list of issues from GitHub
+  // fetching city data from api
   const getPlaces = () => {
     fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=${formState.offset}`, {
       "method": "GET",
@@ -50,6 +50,8 @@ function Search() {
       console.error(err);
     });
   };
+
+  //updating form state
   const handleChange = (event) => {
     const { value, name } = event.target;
     console.log(value);
@@ -75,7 +77,7 @@ function Search() {
       
     }
     if(name==='offset'){
-
+      //must prefetch data to measure number of results so that offsets can be calculated
       fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=0`, {
         "method": "GET",
         "headers": {
@@ -91,23 +93,17 @@ function Search() {
         let medOffset = Math.round(newOffset*0.6666);
         let lowOffset = Math.round(newOffset*0.3333);
         console.log(newOffset);
-        if(value==='low'){
-          // Math.random() * (max - min) + min;
-          //Math.random() * medOffset;
+        //randomness injected into offsets to offer uniqe cities for every result
+        if(value==='low'){       
           return Math.round(Math.random() * (lowOffset -1 - medOffset) + medOffset);
-          // return newOffset;
         }
         if(value === 'med'){
-          // newOffset = Math.round(newOffset*0.3333);
           return Math.round(Math.random() * (lowOffset - medOffset) + medOffset);
         }
         if(value === 'high'){
-          // newOffset = 0;
           return Math.round(Math.random() * (medOffset-1));
         }
-        // console.log(newOffset);
         
-        // console.log(formState.offset);
       }).then(res => {
         console.log('res',res);
         setFormState({
@@ -133,101 +129,44 @@ function Search() {
     destinations.setAttribute("style", "display: block");
     destinations.setAttribute("style", "margin-top: 25px");
     destinations.setAttribute("style", "color: white");
-    // 
-    // if(formState.offset === 0){
-    //   let offset = document.querySelector('#offset').value;
-    //   await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=0`, {
-    //     "method": "GET",
-    //     "headers": {
-    //       "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-    //       "x-rapidapi-key": "9610a05b5amshd976184d69c9411p1b38bdjsn299a5e3639b6"
-    //     }
-    //   })
-    //   .then(response => {
-    //     return response.json();
-    //   })
-    //   .then(res => {
-    //     let newOffset = res.metadata.totalCount;
-    //     let medOffset = Math.round(newOffset*0.6666);
-    //     let lowOffset = Math.round(newOffset*0.3333);
-    //     console.log(newOffset);
-    //     if(offset==='low'){
-    //       // Math.random() * (max - min) + min;
-    //       //Math.random() * medOffset;
-    //       return Math.round(Math.random() * (lowOffset -1 - medOffset) + medOffset);
-    //       // return newOffset;
-    //     }
-    //     if(offset === 'med'){
-    //       // newOffset = Math.round(newOffset*0.3333);
-    //       return Math.round(Math.random() * (lowOffset - medOffset) + medOffset);
-    //     }
-    //     if(offset === 'high'){
-    //       // newOffset = 0;
-    //       return Math.round(Math.random() * (medOffset-1));
-    //     }
-    //     // console.log(newOffset);
-        
-    //     // console.log(formState.offset);
-    //   }).then(res => {
-    //     console.log('res',res);
-    //     setFormState({
-    //       ...formState,
-    //       offset: res,
-    //     });
-    //     console.log('offsett ',formState.offset)
-    //     getPlaces();
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
-    // }
-    // else{
-      getPlaces();
-    // }
-    // setTimeout(() => getPlaces(), 2000);
-    // getPlaces();
+    
+    getPlaces();
   }
 
   return (
     <div style={{width:'35%', margin:'30px'}}>
         <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Country"
-                  name="country"
-                  type="text"
-                //   value={formState.numCities}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="Number of Cities"
-                  name="numCities"
-                  type="text"
-                //   value={formState.numCities}
-                  onChange={handleChange}
-                />
+          <input
+            className="form-input"
+            placeholder="Country"
+            name="country"
+            type="text"
+            onChange={handleChange}
+          />
+          <input
+            className="form-input"
+            placeholder="Number of Cities"
+            name="numCities"
+            type="text"
+            onChange={handleChange}
+          />
 
-                <label for="offset" style={{color:'white'}}>Population Level:  </label>
+          <label for="offset" style={{color:'white'}}>Population Level:  </label>
 
-                <select name="offset" id="offset" onChange={handleChange} style={{width:"85px"}}>
-                  <option value="high">High</option>
-                  <option value="med">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-                <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-
-
-
-
-
+          <select name="offset" id="offset" onChange={handleChange} style={{width:"85px"}}>
+            <option value="high">High</option>
+            <option value="med">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <button
+            className="btn btn-block btn-info"
+            style={{ cursor: 'pointer' }}
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+        
         <div className="container">
         <h1 className="header" >
           <span className="destinations" style={{display:"none", color:'white'}}>Possible Destinations</span>
