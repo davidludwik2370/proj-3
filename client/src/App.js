@@ -1,4 +1,5 @@
-// We import useState and useEffect in our component
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,13 +7,11 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import React, { useState, useEffect } from 'react';
-import PlaceList from './components/PlaceList';
 import Saved from './components/Saved';
 import Search from './components/Search';
 // import Login from './components/Login';
 import Nav from './components/Nav';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Login from './components/LoginForm';
 import Signup from './components/SignupForm';
 
