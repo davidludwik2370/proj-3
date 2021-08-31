@@ -130,56 +130,56 @@ function Search() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     document.querySelector('.header').setAttribute("style", "display: block");
-    if(formState.offset === 0){
-      let offset = document.querySelector('#offset').value;
-      await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=0`, {
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-          "x-rapidapi-key": "9610a05b5amshd976184d69c9411p1b38bdjsn299a5e3639b6"
-        }
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then(res => {
-        let newOffset = res.metadata.totalCount;
-        let medOffset = Math.round(newOffset*0.6666);
-        let lowOffset = Math.round(newOffset*0.3333);
-        console.log(newOffset);
-        if(offset==='low'){
-          // Math.random() * (max - min) + min;
-          //Math.random() * medOffset;
-          return Math.round(Math.random() * (lowOffset -1 - medOffset) + medOffset);
-          // return newOffset;
-        }
-        if(offset === 'med'){
-          // newOffset = Math.round(newOffset*0.3333);
-          return Math.round(Math.random() * (lowOffset - medOffset) + medOffset);
-        }
-        if(offset === 'high'){
-          // newOffset = 0;
-          return Math.round(Math.random() * (medOffset-1));
-        }
-        // console.log(newOffset);
+    // if(formState.offset === 0){
+    //   let offset = document.querySelector('#offset').value;
+    //   await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=${formState.numCities}&sort=${formState.sort}${formState.countries}&minPopulation=1&offset=0`, {
+    //     "method": "GET",
+    //     "headers": {
+    //       "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+    //       "x-rapidapi-key": "9610a05b5amshd976184d69c9411p1b38bdjsn299a5e3639b6"
+    //     }
+    //   })
+    //   .then(response => {
+    //     return response.json();
+    //   })
+    //   .then(res => {
+    //     let newOffset = res.metadata.totalCount;
+    //     let medOffset = Math.round(newOffset*0.6666);
+    //     let lowOffset = Math.round(newOffset*0.3333);
+    //     console.log(newOffset);
+    //     if(offset==='low'){
+    //       // Math.random() * (max - min) + min;
+    //       //Math.random() * medOffset;
+    //       return Math.round(Math.random() * (lowOffset -1 - medOffset) + medOffset);
+    //       // return newOffset;
+    //     }
+    //     if(offset === 'med'){
+    //       // newOffset = Math.round(newOffset*0.3333);
+    //       return Math.round(Math.random() * (lowOffset - medOffset) + medOffset);
+    //     }
+    //     if(offset === 'high'){
+    //       // newOffset = 0;
+    //       return Math.round(Math.random() * (medOffset-1));
+    //     }
+    //     // console.log(newOffset);
         
-        // console.log(formState.offset);
-      }).then(res => {
-        console.log('res',res);
-        setFormState({
-          ...formState,
-          offset: res,
-        });
-        console.log('offsett ',formState.offset)
-        getPlaces();
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    }
-    else{
+    //     // console.log(formState.offset);
+    //   }).then(res => {
+    //     console.log('res',res);
+    //     setFormState({
+    //       ...formState,
+    //       offset: res,
+    //     });
+    //     console.log('offsett ',formState.offset)
+    //     getPlaces();
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
+    // }
+    // else{
       getPlaces();
-    }
+    // }
     // setTimeout(() => getPlaces(), 2000);
     // getPlaces();
   }
@@ -206,7 +206,7 @@ function Search() {
 
                 <label for="offset">Population Level:  </label>
 
-                <select name="offset" id="offset" onChange={handleChange}>
+                <select name="offset" id="offset" onChange={handleChange} style={{width:"85px"}}>
                   <option value="high">High</option>
                   <option value="med">Medium</option>
                   <option value="low">Low</option>
