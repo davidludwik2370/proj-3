@@ -1,17 +1,14 @@
-// We import useState and useEffect in our component
 import React, { useState, useEffect } from 'react';
 import PlaceList from './PlaceList';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 
 function Search() {
-  // We declare a state variable that is an array called `issues` and a function to update it.
   const [places, setPlaces] = useState([]);
   const [formState, setFormState] = useState({
     numCities: 3,
     sort: '-population',
     countries: '',
     offset: 0,
-    
   });
 
   // fetching city data from api
@@ -166,7 +163,7 @@ function Search() {
             Submit
           </button>
         </form>
-        
+
         <div className="container">
         <h1 className="header" >
           <span className="destinations" style={{display:"none", color:'white'}}>Possible Destinations</span>

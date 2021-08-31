@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//navigation bar
 const Nav = () => {
   return (
     <nav className="bg-info text-dark mb-4 py-3 display-flex " style={{display:'flex', justifyContent: "space-around"}}>

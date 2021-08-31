@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-// Issue item accepts a single issue as a prop
-// This component is responsible for displaying the specific information for a given issue
-
 
 
 const Saved = ({ place }) => {
   const [cityState, setCityState] = useState([]);
 
-
+  //pull data from api on page load
   useEffect(() => {
-    // Update the document title using the browser API
     getSaved();
   });
 

@@ -1,14 +1,10 @@
 import React from 'react';
 
-// Issue item accepts a single issue as a prop
-// This component is responsible for displaying the specific information for a given issue
-
-
-
+//renders a single places information
 const Place = ({ place }) => {
 
   const handleSave = () => {
-    
+
   }
 
   return (
